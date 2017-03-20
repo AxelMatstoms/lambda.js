@@ -1,0 +1,11 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "JS redefined with pure functions",
+  "dependencies": {
+    "colors": ">=1.1.2"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}

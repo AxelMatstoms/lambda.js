@@ -1,0 +1,26 @@
+const TDD = require("./testlib.js");
+const LArray = require("./array.js");
+const LBase = require("./base.js");
+
+TDD.assertEqual(3, LArray.Len([2,3,4]), "Len Should return correct len");
+TDD.assertEqual(0, LArray.Len([]), "Len Should return zero for empty array");
+TDD.assertEqual([1,2,3,4], LArray.Push([1,2,3])(4), "Push should return pushed array");
+TDD.assertEqual([2,3], LArray.Slice([1,2,3,4])(1)(3), "Slice should slice properly");
+TDD.assertEqual([1,2,3,4], LArray.Concat([1,2])([3,4]), "Concat should concat properly");
+TDD.assertEqual([1,2], LArray.Pop([1,2,3]), "Pop should remove last object and return new array");
+TDD.assertEqual([2,3], LArray.Shift([1,2,3]), "Shift should remove first object and return new array");
+TDD.assertEqual([2,4,6], LArray.Map([1,2,3])((i) => 2 * i), "Map should map correctly");
+TDD.assertEqual([2,4], LArray.Filter([1,2,3,4])((i) => i % 2 == 0), "Filter should filter correctly");
+TDD.assertEqual("1,2,3", LArray.Join([1,2,3])(","), "Join should join properly");
+TDD.assertEqual(6, LArray.Reduce([1,2,3])((a) => (c) => a + c)(0), "Reduce should reduce correctly");
+TDD.assertEqual([1,2], LArray.Range(1)(3)(1), "Range should include first index but not last");
+TDD.assertEqual([3,6,9], LArray.Range(3)(10)(3), "Range should handle step correctly");
+TDD.assertEqual([0,1,2], LArray.AMap([0,0,0])((c) => (i) => i), "AMap should handle index");
+TDD.assertEqual(["odd","odd"], LArray.AFilter(["even","odd","even","odd"])((c) => (i) => i % 2 == 1), "AFilter should handle index");
+TDD.assertEqual(6, LArray.AReduce([0,0,0,0])((a) => (c) => (i) => a + i)(0), "AReduce should handle index");
+TDD.assertEqual(true, LArray.Every([2,4,6,8])((n) => n % 2 == 0), "Every should return true if every value passes test");
+TDD.assertEqual(false, LArray.Every([2,4,6,7])((n) => n % 2 == 0), "Every should return false if one value failes test");
+TDD.assertEqual(true, LArray.AEvery([1,2,3])((n) => (i) => i + 1 == n), "AEvery should work with index");
+TDD.assertEqual(true, LArray.Some([1,2,3])((n) => n % 2 == 0), "Some should return true if one value passes test");
+TDD.assertEqual(false, LArray.Some([1,3,5])((n) => n % 2 == 0), "Some should return false if all values fail test");
+TDD.assertEqual(true, LArray.ASome([0,3,4])((n) => (i) => n == i), "ASome should work with index");
