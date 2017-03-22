@@ -30,6 +30,13 @@ const Pop = (arr) => Slice(arr)(0)(Len(arr) - 1);
 
 const Shift = (arr) => Slice(arr)(1)(Len(arr));
 
+const Reverse = (arr) => {
+    const iter = (tempArr) => (idx) => (idx > 0) ?
+	iter(Push(tempArr)(arr[idx - 1]))(idx - 1):
+	tempArr;
+    return iter([])(Len(arr));
+}
+
 const _Map = (arr) => (fn) => {
     const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
         iter(Push(tempArr)(fn(arr[idx])))(idx + 1) :
@@ -129,6 +136,7 @@ exports.Clone = Clone;
 exports.Concat = Concat;
 exports.Pop = Pop;
 exports.Shift = Shift;
+exports.Reverse = Reverse;
 exports.Map = _Map;
 exports.AMap = AMap;
 exports.Filter = Filter;

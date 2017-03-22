@@ -9,6 +9,7 @@ TDD.assertEqual([2,3], LArray.Slice([1,2,3,4])(1)(3), "Slice should slice proper
 TDD.assertEqual([1,2,3,4], LArray.Concat([1,2])([3,4]), "Concat should concat properly");
 TDD.assertEqual([1,2], LArray.Pop([1,2,3]), "Pop should remove last object and return new array");
 TDD.assertEqual([2,3], LArray.Shift([1,2,3]), "Shift should remove first object and return new array");
+TDD.assertEqual([3,2,1], LArray.Reverse([1,2,3]), "Reverse should reverse array");
 TDD.assertEqual([2,4,6], LArray.Map([1,2,3])((i) => 2 * i), "Map should map correctly");
 TDD.assertEqual([2,4], LArray.Filter([1,2,3,4])((i) => i % 2 == 0), "Filter should filter correctly");
 TDD.assertEqual("1,2,3", LArray.Join([1,2,3])(","), "Join should join properly");
