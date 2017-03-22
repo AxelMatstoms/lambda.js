@@ -49,8 +49,7 @@ const AMap = (arr) => (fn) => {
     const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
         iter(Push(tempArr)(fn(arr[idx])(idx)))(idx + 1) :
         tempArr;
-    return iter([])(0);TDD.assertEqual(true, LArray.Every([2,4,6,8])((n) => n % 2 == 0), "Every should return true if every value passes test");
-TDD.assertEqual(false, LArray.Every([2,4,6,7])((n) => n % 2 == 0), "Every should return false if one value failes test");
+    return iter([])(0);
 }
 
 const Filter = (arr) => (fn) => {
@@ -120,6 +119,8 @@ const ASome = (arr) => (fn) => {
         ok;
     return iter(false)(0);
 }
+
+const Includes = (arr) => (item) => Some(arr)((n) => n == item);
 
 //its like python range but pure
 const Range = (start) => (end) => (step) => {
