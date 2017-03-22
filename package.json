@@ -6,6 +6,6 @@
     "colors": ">=1.1.2"
   },
   "scripts": {
-    "test": "node test.js",
+    "test": "node test.js"
   }
 }

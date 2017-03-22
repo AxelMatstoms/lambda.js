@@ -12,7 +12,8 @@ const Push = (arr) => (val) => {
 }
 
 const Slice = (arr) => (start) => (end) => {
-    const iter = (tempArr) => (idx) => (idx < end && idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempArr) => (idx) => (idx < end && idx < l) ?
         iter(Push(tempArr)(arr[idx]))(idx + 1) : tempArr;
     return iter([])(start);
 }
@@ -20,7 +21,8 @@ const Slice = (arr) => (start) => (end) => {
 const Clone = (arr) => Slice(arr)(0)(Len(arr));
 
 const Concat = (arr1) => (arr2) => {
-    const iter = (tempArr) => (idx) => (idx < Len(arr2)) ?
+    const l2 = Len(arr2);
+    const iter = (tempArr) => (idx) => (idx < l2) ?
         iter(Push(tempArr)(arr2[idx]))(idx + 1) :
         tempArr;
     return iter(arr1)(0);
@@ -38,7 +40,8 @@ const Reverse = (arr) => {
 }
 
 const _Map = (arr) => (fn) => {
-    const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempArr) => (idx) => (idx < l) ?
         iter(Push(tempArr)(fn(arr[idx])))(idx + 1) :
         tempArr;
     return iter([])(0);
@@ -46,14 +49,16 @@ const _Map = (arr) => (fn) => {
 
 //Map function gets index too
 const AMap = (arr) => (fn) => {
-    const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempArr) => (idx) => (idx < l) ?
         iter(Push(tempArr)(fn(arr[idx])(idx)))(idx + 1) :
         tempArr;
     return iter([])(0);
 }
 
 const Filter = (arr) => (fn) => {
-    const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempArr) => (idx) => (idx < l) ?
         ((fn(arr[idx])) ?
             iter(Push(tempArr)(arr[idx]))(idx + 1) :
             iter(tempArr)(idx + 1)) :
@@ -63,7 +68,8 @@ const Filter = (arr) => (fn) => {
 
 //Filter function gets index too
 const AFilter = (arr) => (fn) => {
-    const iter = (tempArr) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempArr) => (idx) => (idx < l) ?
         ((fn(arr[idx])(idx)) ?
             iter(Push(tempArr)(arr[idx]))(idx + 1) :
             iter(tempArr)(idx + 1)) :
@@ -72,49 +78,56 @@ const AFilter = (arr) => (fn) => {
 }
 
 const Reduce = (arr) => (fn) => (first) => {
-    const iter = (temp) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (temp) => (idx) => (idx < l) ?
         iter(fn(temp)(arr[idx]))(idx + 1) :
         temp;
     return iter(first)(0);
 }
 
 const AReduce = (arr) => (fn) => (first) => {
-    const iter = (temp) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (temp) => (idx) => (idx < l) ?
         iter(fn(temp)(arr[idx])(idx))(idx + 1) :
         temp;
     return iter(first)(0);
 }
 
 const Join = (arr) => (sep) => {
-    const iter = (tempStr) => (idx) => (idx < Len(arr)) ?
+    const l = Len(arr);
+    const iter = (tempStr) => (idx) => (idx < l) ?
         iter(tempStr + ((idx == 0) ? "" : sep) + arr[idx])(idx + 1) :
         tempStr;
     return iter("")(0);
 }
 
 const Every = (arr) => (fn) => {
-    const iter = (ok) => (idx) => (idx < Len(arr) && ok) ?
+    const l = Len(arr);
+    const iter = (ok) => (idx) => (idx < l && ok) ?
         iter(fn(arr[idx]))(idx + 1) :
         ok;
     return iter(true)(0);
 }
 
 const AEvery = (arr) => (fn) => {
-    const iter = (ok) => (idx) => (idx < Len(arr) && ok) ?
+    const l = Len(arr);
+    const iter = (ok) => (idx) => (idx < l && ok) ?
         iter(fn(arr[idx])(idx))(idx + 1) :
         ok;
     return iter(true)(0);
 }
 
 const Some = (arr) => (fn) => {
-    const iter = (ok) => (idx) => (idx < Len(arr) && !ok) ?
+    const l = Len(arr);
+    const iter = (ok) => (idx) => (idx < l && !ok) ?
         iter(fn(arr[idx]))(idx + 1) :
         ok;
     return iter(false)(0);
 }
 
 const ASome = (arr) => (fn) => {
-    const iter = (ok) => (idx) => (idx < Len(arr) && !ok) ?
+    const l = Len(arr);
+    const iter = (ok) => (idx) => (idx < l && !ok) ?
         iter(fn(arr[idx])(idx))(idx + 1) :
         ok;
     return iter(false)(0);
@@ -149,4 +162,5 @@ exports.Every = Every;
 exports.AEvery = AEvery;
 exports.Some = Some;
 exports.ASome = ASome;
+exports.Includes = Includes;
 exports.Range = Range;
