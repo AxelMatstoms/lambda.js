@@ -11,6 +11,11 @@ exports.assertEqual = (expected, actual, description) => {
     console.log(`[${(passed ? "OK".bold.green : "FAILED".bold.red)}] ${description} ${passed ? "": `expected: ${expected}, actual: ${actual}`}`);
 }
 
+exports.assertApproxEqual = (expected, actual, description) => {
+    let passed = Math.abs(1 - (expected / actual)) < (1 / 1000);
+    console.log(`[${(passed ? "OK".bold.green : "FAILED".bold.red)}] ${description} ${passed ? "": `expected: ${expected}, actual: ${actual}`}`);
+}
+
 exports.testSpeedComp = (n, fn1, fn2, fn1name, fn2name) => {
     let fn1n = fn1name ? fn1name : "fn1";
     let fn2n = fn2name ? fn2name : "fn2";

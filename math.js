@@ -1,5 +1,11 @@
 const LArray = require("./array.js");
 
+const E = 2.718281828459045235360287471352662497757247093699959574966967627724076630353;
+
+const PI = 3.141592653589793238462643383279502884197169399375105820974944592307816406286;
+
+const TAU = 2 * PI;
+
 const Abs = (x) => (x >= 0) ? x : -x;
 
 const Sign = (x) => (x >= 0) ? (x == 0) ? 0 : 1 : -1;
@@ -36,14 +42,11 @@ const AMin = (arr) => {
 
 const ASum = (arr) => LArray.Reduce(arr)((a) => (c) => a + c)(0);
 
-const Sin = (x) => ASum(LArray.Map(LArray.Range(0)(10)(1))((n) => (Pow(-1)(n) / Factorial(2 * n + 1)) * Pow(x)(2 * n + 1)));
+const Sin = (x) => ((y) => ASum(LArray.Map(LArray.Range(0)(10)(1))((n) => (Pow(-1)(n) / Factorial(2 * n + 1)) * Pow(x)(2 * n + 1))))(x % TAU);
 
-const Cos = (x) => ASum(LArray.Map(LArray.Range(0)(10)(1))((n) => (Pow(-1)(n) / Factorial(2 * n)) * Pow(x)(2 * n)));
+const Cos = (x) => ((y) => ASum(LArray.Map(LArray.Range(0)(10)(1))((n) => (Pow(-1)(n) / Factorial(2 * n)) * Pow(y)(2 * n))))(x % TAU);
 
-const E = 2.718281828459045235360287471352662497757247093699959574966967627724076630353;
-
-const PI = 3.141592653589793238462643383279502884197169399375105820974944592307816406286;
-
+const Tan = (x) => Sin(x) / Cos(x);
 
 exports.Abs = Abs;
 exports.Sign = Sign;
@@ -61,5 +64,7 @@ exports.AMax = AMax;
 exports.AMin = AMin;
 exports.Sin = Sin;
 exports.Cos = Cos;
+exports.Tan = Tan;
 exports.E = E;
 exports.PI = PI;
+exports.TAU = TAU;

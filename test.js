@@ -51,5 +51,6 @@ TDD.assertEqual(2, LMath.Min(3)(2), "Min should return lowest number");
 TDD.assertEqual(3, LMath.AMax([1,3,2]), "AMax should return highest num in array");
 TDD.assertEqual(1, LMath.AMin([1,3,2]), "AMin should return lowest num in array");
 TDD.assertEqual(6, LMath.Factorial(3), "Factorial should return n!");
-console.log(LMath.Sin(1));
-console.log(LMath.Cos(1));
+TDD.assertApproxEqual(Math.sin(1), LMath.Sin(1), "Sin should return correct value");
+TDD.assertApproxEqual(Math.cos(1), LMath.Cos(1), "Cos should return correct value");
+TDD.assertApproxEqual(Math.tan(1), LMath.Tan(1), "Tan should return correct value");
